@@ -99,7 +99,7 @@ export default class SearchInput extends Component {
   }
 
   updateSearch(e) {
-    const searchTerm = e.target.value
+    const searchTerm = e.nativeEvent.text
     this.setState({
       searchTerm: searchTerm
     }, () => {
