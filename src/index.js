@@ -20,6 +20,7 @@ export default class SearchInput extends Component {
     this.state = {
       searchTerm: this.props.value || '',
       inputFocus: props.inputFocus,
+      updateSearch: this.updateSearch.bind(this),
     }
     this._keyboardDidHide = this._keyboardDidHide.bind(this)
   }
@@ -33,13 +34,13 @@ export default class SearchInput extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    if (typeof props.value !== 'undefined' && props.value !== state.value) {
+    if (props.value !== undefined && props.value !== state.searchTerm) {
       const e = {
-        target: {
-          value: props.value,
+        nativeEvent: {
+          text: props.value,
         }
       }
-      this.updateSearch(e)
+      state.updateSearch(e)
     }
 
     return null
